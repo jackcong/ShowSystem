@@ -1,0 +1,315 @@
+﻿
+<style>
+    .ui-autocomplete {
+        z-index: 1111111;
+        max-height: 400px;
+        overflow-y: scroll;
+    }
+</style>
+
+<div id="divDetail">
+
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
+        @Html.Partial("~/Views/ComView/InnerTop.cshtml")
+        @Html.Partial("~/Views/ComView/InnerLeft.cshtml")
+    </nav>
+
+    <div ng-class="{page_wrapper_max:pagemax, page_wrapper_min:pagemin}">
+        <br />
+        <div class="page_content">
+            <div class="row">
+                <div class="control_bar">
+                    <a href="javascript:void(0)" ng-show="(summary.Id !=0 && summary.UserID==CurrentUserId)" ng-click="DeleteSummary()" title="Delete summary"><i class="icon_trash float_right"></i></a>
+                    <a class="more-link" href="javascript:void(0);history.go(-1);" style="display:block; margin-bottom:15px; cursor:pointer; text-decoration:none;"><i class="icon_return float_left"></i></a>
+                </div>
+            </div>
+
+            <div class="row">
+                <br />
+                @*<h4>First Section</h4>*@
+                <table class="table_display table_info">
+                    <tr>
+                        <th style="border-top:solid 3px #1da7e3; margin-top:2px;">
+                            TS ID:
+                        </th>
+                        <td style="border-top:solid 3px #1da7e3;">{{summary.TSIDS}}</td>
+
+                        <th style="border-top:solid 3px #d39beb;">Week Ending Date:</th>
+                        <td style="border-top:solid 3px #d39beb;">{{summary.EndDayOfWeek | date:'MM/dd/yyyy'}}</td>
+
+                        <th style="border-top:solid 3px #f9c635;">User Name:</th>
+                        <td style="border-top:solid 3px #f9c635;">{{summary.DisplayName}}</td>
+
+                        <th style="border-top:solid 3px #91c250;">Date Opened:</th>
+                        <td style="border-top:solid 3px #91c250;">{{summary.DateOpened | date:'MM/dd/yyyy'}}</td>
+
+                    </tr>
+                    <tr>
+                        <th>Total Hours:</th>
+                        <td>{{summary.TotalHours}}</td>
+
+                        <th>Week:</th>
+                        <td>{{summary.TypeWeek}}</td>
+
+                        <th>Email:</th>
+                        <td>{{summary.Email}}</td>
+
+                        <th>&nbsp;</th>
+                        <td>&nbsp;</td>
+
+                    </tr>
+                    <tr>
+                        <th>&nbsp;</th>
+                        <td>&nbsp;</td>
+                        <th>&nbsp;</th>
+                        <td>&nbsp;</td>
+
+                        <th>Dept #:</th>
+                        <td>{{summary.GroupName}}</td>
+
+                        <th>&nbsp;</th>
+                        <td>&nbsp;</td>
+                    </tr>
+                </table>
+                <br />
+                </div>
+            <div class="row"  style="background:#ffffff;">
+                <div class="table_categories">
+                    <div class="div_categories" ng-repeat="singleproject in projectlist">
+                        <div class="table_header">
+                            Total
+                            <span style="display:block; float:right; margin-left:5px; width:35px; text-align:center;"> % </span>
+                        </div>
+                        <div class="table_Title">
+                            <span>{{singleproject.ProjectName}} </span>
+                            <span style="display:block; float:right; width:35px; text-align:center;"> {{singleproject.TotalPercent}} </span>
+                            <span style="display:block; float:right; width:40px; text-align:center;">{{singleproject.TotalHours}}</span>
+                        </div>
+
+                        <div class="categroie_detail" ng-repeat="detail in singleproject.Line">
+                            <span>{{detail.detailName}}:</span>
+                            <span style="display:block; float:right; width:35px; text-align:center;"> {{detail.DetailPercent}} </span>
+                            <span style="display:block; float:right; width:40px; text-align:center;">{{detail.DetailTotalHours}}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearboth"></div>
+                <br />
+
+                <table class="table_display table_addTimesheet" cellpadding="5" cellspacing="5">
+                    <tr>
+                        <td colspan="10"><div class="table_timesheet_title"> Time Sheet <input ng-show="summary.UserID==CurrentUserId" type="button" ng-click="AddNewTimeSheet();" value="+" class="btn_notButtonStyle" /></div></td>
+                    </tr>
+                    <tr class="table_header">
+                        <td>Category</td>
+                        <td>Cust</td>
+                        <td>Sun</td>
+                        <td>Mon</td>
+                        <td>Tue</td>
+                        <td>Wed</td>
+                        <td>Thurs</td>
+                        <td>Fri</td>
+                        <td>Sat</td>
+                        <td>Total</td>
+                    </tr>
+                    <tr class="table_Title">
+                        <td></td>
+                        <td></td>
+                        <td class="table_title_Date" ng-repeat="singleDay in weekRange">{{singleDay}}</td>
+                        <td></td>
+                    </tr>
+                    <tr ng-class-odd="'red'" ng-class-even="'blue'" ng-repeat="group in summaryGroup">
+                        <td title="Category">
+                            <span ng-if="group.categoryDetailName!='Total'">{{group.categoryDetailName}}</span>
+                            <span ng-if="group.categoryDetailName=='Total'"><b>{{group.categoryDetailName}}</b></span>
+                        </td>
+                        <td title="Cust">{{group.categoryCustomerName}}</td>
+                        <td>
+                            <span ng-repeat="single in summary.listTimeSheet" ng-if="single.CategoryDetailName==group.categoryDetailName">
+                                <a href="javascript:void(0)" ng-click="EditTimeSheet(single.Id);">{{getHour(single,0)}}</a>
+                            </span>
+
+                            <span ng-if="group.categoryDetailName=='Total'">
+                                <b>{{getTotalHour(0)}}</b>
+                            </span>
+                        </td>
+                        <td>
+                            <span ng-repeat="single in summary.listTimeSheet" ng-if="single.CategoryDetailName==group.categoryDetailName">
+                                <a href="javascript:void(0)" ng-click="EditTimeSheet(single.Id);">{{getHour(single,1)}}</a>
+                            </span>
+                            <span ng-if="group.categoryDetailName=='Total'">
+                                <b>{{getTotalHour(1)}}</b>
+                            </span>
+                        </td>
+                        <td>
+                            <span ng-repeat="single in summary.listTimeSheet" ng-if="single.CategoryDetailName==group.categoryDetailName">
+                                <a href="javascript:void(0)" ng-click="EditTimeSheet(single.Id);">{{getHour(single,2)}}</a>
+                            </span>
+                            <span ng-if="group.categoryDetailName=='Total'">
+                                <b>{{getTotalHour(2)}}</b>
+                            </span>
+                        </td>
+                        <td>
+                            <span ng-repeat="single in summary.listTimeSheet" ng-if="single.CategoryDetailName==group.categoryDetailName">
+                                <a href="javascript:void(0)" ng-click="EditTimeSheet(single.Id);">{{getHour(single,3)}}</a>
+                            </span>
+                            <span ng-if="group.categoryDetailName=='Total'">
+                                <b>{{getTotalHour(3)}}</b>
+                            </span>
+                        </td>
+                        <td>
+                            <span ng-repeat="single in summary.listTimeSheet" ng-if="single.CategoryDetailName==group.categoryDetailName">
+                                <a href="javascript:void(0)" ng-click="EditTimeSheet(single.Id);">{{getHour(single,4)}}</a>
+                            </span>
+
+                            <span ng-if="group.categoryDetailName=='Total'">
+                                <b>{{getTotalHour(4)}}</b>
+                            </span>
+                        </td>
+                        <td>
+                            <span ng-repeat="single in summary.listTimeSheet" ng-if="single.CategoryDetailName==group.categoryDetailName">
+                                <a href="javascript:void(0)" ng-click="EditTimeSheet(single.Id);">{{getHour(single,5)}}</a>
+                            </span>
+                            <span ng-if="group.categoryDetailName=='Total'">
+                                <b>{{getTotalHour(5)}}</b>
+                            </span>
+                        </td>
+                        <td>
+                            <span ng-repeat="single in summary.listTimeSheet" ng-if="single.CategoryDetailName==group.categoryDetailName">
+                                <a href="javascript:void(0)" ng-click="EditTimeSheet(single.Id);">{{getHour(single,6)}}</a>
+                            </span>
+                            <span ng-if="group.categoryDetailName=='Total'">
+                                <b>{{getTotalHour(6)}}</b>
+                            </span>
+                        </td>
+                        <td>
+                            <b>{{getTotalHourByCategory(group.categoryDetailName)}}</b>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <br />
+        </div>
+    </div>
+
+    <div id="divMail" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="divMail" aria-hidden="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="panel-heading">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <span>Add Act Hours</span>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <form name="timesheetform" novalidate ng-submit="SaveTimeSheet()">
+                        <div class="nav_sendingEmail">
+                            <i ng-show="summary.UserID==CurrentUserId" class="glyphicon glyphicon-ok-sign" style="font-size:16px; float:left; line-height:30px; color:#3366cc;"></i><input ng-show="summary.UserID==CurrentUserId" type="submit" id="btnSubmit" value="Save" class="btn_linkStyleButton" />
+                            <i ng-show="(summary.UserID==CurrentUserId && TimeSheet.Id !=0)" class="glyphicon glyphicon-trash" style="font-size:16px; float:left; line-height:30px; color:#3366cc;"></i><input ng-show="(summary.UserID==CurrentUserId && TimeSheet.Id !=0)" type="button" id="btnDelete" ng-click="DeleteTimeSheet()" value="Delete" class="btn_linkStyleButton" />
+                        </div>
+                        <div class="clear_both"></div>
+                        <div class="content_sendingEmail">
+                            <ul>
+                                <li>
+                                    <span class="item_name">Category :</span>
+                                    <input class="txt_selection" ng-model="TimeSheet.TempCategoryName" placeholder="Category" name="txtCategory" type="text" id="txtCategory" ng-required="!isSaved" ng-show="!isSaved" /><input type="button" class="icon_arrowDown float_left" style="margin-left:-20px; z-index:10;" ng-click="BindAutocompleteClick()" ng-show="!isSaved" />
+
+                                    <span class="txt_input_Email_AutoComplete" ng-show="isSaved">{{TimeSheet.CategoryDetailName}}</span>
+                                </li>
+                                <li>
+                                    <span class="item_name">Date :</span>
+                                    <div class="input-group date form_date col-md-5" ng-show="!isSaved">
+                                        <input ng-show="!isSaved" name="txtdate" ng-model="TimeSheet.TypeDate" dateFormat required placeholder="Date" id="txtDate" class="txt_input_Date form_datetime" type="text" readonly>
+                                        <span ng-show="!isSaved" class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                    </div>
+                                    <span class="txt_input_Email_AutoComplete" ng-show="isSaved">{{TimeSheet.TypeDate | date:'dd/MM/yyyy'}}</span>
+                                </li>
+                                <li>
+                                    <span class="item_name">Week :</span>
+                                    <span class="txt_input_Email_AutoComplete">{{TimeSheet.TypeWeek}}</span>
+                                </li>
+                                <li>
+                                    <span class="item_name">Hours :</span>
+                                    <input placeholder="Hours" name="txthours" class="txt_input_Email" required type="number" min="0" max="24" ng-model="TimeSheet.ActHours" />
+                                </li>
+                                <li>
+                                    <span class="item_name">Comments :</span>
+                                    <textarea class="txt_textarea" name="txtcomments" ng-maxlength="400" placeholder="Comments" style="height:100px;width:70%;" ng-model="TimeSheet.Comment"></textarea>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="divComment" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="divComment" aria-hidden="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="panel-heading">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <span>Comment</span>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="clear_both"></div>
+                    <div id="divCommentContent" class="content_sendingEmail">
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('.form_date').datetimepicker({
+        language: 'en',
+        bootcssVer: 3,
+        weekStart: 1,
+        todayBtn: 'linked',
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        minView: 2,
+        forceParse: 0,
+        //startDate: new Date(new Date().setDate()-2),
+        format: 'dd/mm/yyyy'
+    }).on('changeDate', function (ev) {
+
+        var scope = angular.element($("#divDetail")[0]).scope();
+        var selectedDate = new Date(ev.date.valueOf());
+
+        //keep the selected data in week range.
+
+        if (scope.CheckDateRange(selectedDate) == false) {
+            return;
+        }
+
+        var tempWeek = t2v_lib.DateCalculate.getWeek(selectedDate);
+        //check the date you chose exists or not.
+        if (scope.CheckSummaryExists(selectedDate.getFullYear(),tempWeek, scope.DetailID) == false) {
+            return;
+        }
+
+        scope.TimeSheet.TypeDate = (selectedDate.getFullYear() + "-" + (selectedDate.getMonth() + 1) + "-" + selectedDate.getDate());
+        scope.TimeSheet.TypeWeek = t2v_lib.DateCalculate.getWeek(selectedDate);
+        scope.summary.TypeWeek = scope.TimeSheet.TypeWeek;
+        scope.summary.DateOpened = selectedDate;
+
+        if (scope.summary.Id == 0)
+        {
+            scope.weekRange = t2v_lib.DateCalculate.getWeekDays(selectedDate);
+        }
+
+        scope.$apply();
+    });
+</script>

@@ -1,0 +1,66 @@
+﻿<div id="staticwrapper">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
+        @Html.Partial("~/Views/ComView/InnerTop.cshtml")
+        @Html.Partial("~/Views/ComView/InnerLeft.cshtml")
+    </nav>
+    <div ng-class="{page_wrapper_max:pagemax, page_wrapper_min:pagemin}">
+        <div class="page_content">
+            <br />
+            @*<div class="breadcrumb">
+                <a style="cursor:pointer" href="/#/Statistics"><i class="icon_home float_left margin-right-5"></i>Statistics</a>
+            </div>*@
+            @*<div class="row">
+        <div class="control_bar">
+            <a class="more-link" style="display:block; margin-bottom:15px; cursor:pointer; text-decoration:none;" ng-click="ShowTimeSheet()"><i class="add_new"></i></a>
+        </div>
+    </div>
+
+    <div class="row statistic_categories">
+        <div class="col-lg-3 float_left margin-left--15" ng-repeat="singleproject in projectlist">
+            <br />
+            <div class="panel lightBlue">
+                <div class="panel-heading">
+                    <div class="lbl_total">Total</div>
+                    <div class="left_column">{{singleproject.ProjectName}}</div>
+                    <div class="right_column">{{singleproject.TotalHours}}</div>
+                </div>
+                <div class="panel-body">
+                    <div ng-repeat="detail in singleproject.Line">
+                        <div class="left_column">{{detail.detailName}}:</div>
+                        <div class="right_column">{{detail.DetailTotalHours}}</div>
+                    </div>
+                </div>
+       
+                    </div>
+                </div>
+            </div>
+            *@
+            @*
+                <div class="panel lightgray">
+                    <a class="panel_newCategory" href="#">+</a>
+                </div>
+            *@
+            <br />
+
+            <select ng-model="datesearch" ng-change="selectUserHours()" ng-options="d for d in GetDateSource()" class="select_mid">
+                <option value="">--Select--</option>
+            </select>
+            <br />
+            <br />
+            <table class="table_display table_statistics">
+                <tr>
+                    <th>User</th>
+                    <th>Group</th>
+                    <th>Date</th>
+                    <th>Total Hours</th>
+                </tr>
+                <tr ng-repeat="single in userhours">
+                    <td>{{single.DisplayName}}</td>
+                    <td>{{single.GroupName}}</td>
+                    <td>{{datesearch}}</td>
+                    <td style="text-align:right;"><span style="color:red" ng-show="single.TotalHours<8">{{single.TotalHours}}</span><span style="color:darkgreen" ng-show="single.TotalHours>=8">{{single.TotalHours}}</span></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

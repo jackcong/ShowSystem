@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
+
+    <title>Productivity. Cloud-based platform. </title>
+    <meta name="description" content="TimeSheet">
+    <meta name="keywords" content="" />
+    <meta name="author" content="T2VSoft Inc">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    @Styles.Render("~/allStyle")
+
+    @Scripts.Render("~/SystemScript")
+
+    @Scripts.Render("~/CustomerScript")
+
+    <script>
+        function ShowExportInfo(url, postData, mainId) {
+            //debugger;
+            if (postData.fullSearch === undefined) postData.fullSearch = "";
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: { mainId: mainId, fullSearch: postData.fullSearch, colInfos: postData.exportFileds },
+                async: true,
+                success: function (response) {
+                    $("#exportContent").html(response);
+                    $("#divExport").modal("show");
+                }
+            });
+        }
+    </script>
+</head>
+<body ng-view data-ng-controller="CommonCtrl">
+</body>
+</html>

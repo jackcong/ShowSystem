@@ -1,0 +1,74 @@
+﻿<style>
+    #MySplitter {
+        /* Height is set to match window size in $().ready() below */
+        border: 3px solid #669;
+        min-width: 600px;
+        min-height: 300px;
+    }
+
+    .SplitterPane {
+        background: #eef;
+        overflow: auto;
+    }
+
+    .vsplitbar {
+        width: 6px;
+    }
+
+        .vsplitbar.active, .vsplitbar:hover {
+            background-color: #c66;
+            width: 6px;
+            opacity: 0.5;
+            filter: alpha(opacity=50); /* IE */
+        }
+</style>
+<script type="text/javascript">
+    $().ready(function () {
+        // Main vertical splitter, anchored to the browser window
+        $("#MySplitter").splitter({
+            type: "v",
+            outline: true,
+            minLeft: 100,
+            anchorToWindow: true,
+            accessKey: "L"
+        });
+        // Second vertical splitter, nested in the right pane of the main one.
+        $("#CenterAndRight").splitter({
+            type: "v",
+            outline: true,
+            minRight: 100,
+            accessKey: "R"
+        });
+    });
+</script>
+<div id="comparewrapper">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
+        @Html.Partial("~/Views/ComView/InnerTop.cshtml")
+        @Html.Partial("~/Views/ComView/InnerLeft.cshtml")
+    </nav>
+    <div ng-class="{page_wrapper_max:pagemax, page_wrapper_min:pagemin}">
+        <div class="page_content">
+            <div id="MySplitter">
+
+                <div class="SplitterPane">
+                    <p>This is the left pane of the 3-column splitter. It has been limited to a range of 100 to 250 pixels wide by inline styles. It starts at 150 pixels wide.</p>
+                </div>
+
+                <div id="CenterAndRight">
+
+                    <div class="SplitterPane">
+                        <p>This is the center part of the 3-column splitter. It does most of the resizing because the left and right panes were given initial sizes and limits. Try resizing the browser window or moving a splitbar to see what I mean.</p>
+                        <p>The splitbars are keyboard-accessible. Use <kbd>Alt-Shift-L</kbd> to select the left vertical splitbar, or <kbd>Alt-Shift-R</kbd> for the right one. (Or, press tab until the splitbar you want to move is in focus.) Then use the arrow keys to move the bar. </p>
+                        <p>Splitters nested one or two levels deep are a great solution for user interfaces that just need a small number of user-resizable panes. If the data is more tabular in nature, it would be better to build a plugin that accepted a table as input and created resizable columns.</p>
+                    </div>
+
+                    <div class="SplitterPane">
+                        <p>This is the right pane of the 3-column splitter. It has been limited to a range of 100 to 250 pixels wide by inline styles. It starts at 150 pixels wide.</p>
+                    </div>
+
+                </div> <!-- #CenterAndRight -->
+
+            </div> <!-- #MySplitter -->
+        </div>
+    </div>
+</div>

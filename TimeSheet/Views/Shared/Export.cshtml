@@ -1,0 +1,127 @@
+﻿@using System.Data
+@using System.Collections
+@Html.Hidden("hidDataType", ViewData["DataType"])
+@Html.Hidden("hidMainId", ViewData["MainId"])
+@Html.Hidden("hidSearchField", ViewData["SearchField"])
+@Html.Hidden("hidSearchString", ViewData["SearchString"])
+@Html.Hidden("hidSearchOper", ViewData["SearchOper"])
+@Html.Hidden("hidSidx", ViewData["Sidx"])
+@Html.Hidden("hidSord", ViewData["Sord"])
+@Html.Hidden("hidExportFieldsMataData", ViewData["ExportFieldsMataData"])
+@{
+    var exportFields = ViewData["ExportFields"] as List<string[]>;
+}
+<script type="text/javascript">
+    function SelectAllFields(chk) {
+        var checked = $(chk)[0].checked;
+        if (checked == "checked" || checked == true)
+            checked = true;
+        else
+            checked = false;
+
+        $("#tblExportFields").find("input[type=checkbox]").each(function () {
+            $(this).attr("checked", checked);
+        });
+    }
+
+    function ExportFile()
+    {
+        //debugger;
+        var dataType = $("#hidDataType").val();
+        var mainId = $("#hidMainId").val();
+        var searchField = $("#hidSearchField").val();
+        var searchString = $("#hidSearchString").val();
+        var searchOper = $("#hidSearchOper").val();
+        var exportFieldsMataData = $("#hidExportFieldsMataData").val();
+        var sidx = $("#hidSidx").val();
+        var sord = $("#hidSord").val();
+
+        var userType = 1;
+        userType= $('input:radio[name=UserType]:checked').val();
+
+        var exportType = $("#selExportType").val();
+        var exportFields = "";
+        $("#tblExportFields").find("input[type=checkbox]").each(function () {
+            if ($(this).is(":checked") == "checked" || $(this).is(":checked") == true) {
+                if ($(this).attr("FieldName") != undefined) {
+                    exportFields += "," + $(this).attr("FieldName");
+                }
+            }
+        });
+
+        if (exportFields == "") {
+            alert("Field Name is required.");
+            return;
+        }
+
+        $("#btnExport").css("display", "none");
+        $("#loadingimg").css("display", "inline-block");
+
+        $.ajax({
+            url: '@(Url.Action("ExportFile", "Export"))',
+            type: 'POST',
+            data: { dataType: dataType, mainId: mainId, searchField: searchField, fullSreach: searchString, searchOper: searchOper, sidx: sidx, sord: sord, exportType: exportType, exportFields: exportFields.substring(1), exportFieldsMataData: exportFieldsMataData, userType: userType },
+            async: true,
+            success: function (response) {
+                window.location.href = "Export/DownloadFile?fileNameWithPath=" + response;
+                $("#btnExport").css("display", "inline-block");
+                $("#loadingimg").css("display", "none");
+            }
+        });
+    }
+</script>
+<div style="padding-top:20px">
+    <table border="1" cellpadding="3" cellspacing="3">
+        <tr>
+            <td>
+                <select id="selExportType" style="width: 160px;">
+                    <option value="CSV">CSV</option>
+                    <option value="CSV COMPRESS">CSV COMPRESS</option>
+                    <option value="EXCEL">EXCEL</option>
+                </select>&nbsp; &nbsp; &nbsp;
+                <input type="radio" checked="checked" value="1" name="UserType" /><label class="margin-left-5">Current User</label>&nbsp; &nbsp; &nbsp;
+                <input type="radio" value="2" name="UserType" /><label class="margin-left-5">All User</label>
+            </td>
+            <td>
+                &nbsp;<input type="button" id="btnExport" value="Export" class="btn margin-left-10" onclick="ExportFile();" />
+                &nbsp;<img src="../Content/img/load.gif" style="display:none;" id="loadingimg" />
+            </td>
+        </tr>
+    </table>
+    <div id="customizeDiv">
+
+    </div>
+    <div style="height: 300px; margin-top: 4px; overflow: auto;">
+        <table border="0" cellpadding="3" cellspacing="3">
+            <tr>
+                <td>
+                    <table id="tblExportFields" cellpadding="0" cellspacing="0" style="width: 100%;"
+                           class="tblDetail">
+                        <tr>
+                            <th style="width: 30px; text-align: center;">
+                                <input type="checkbox" onclick="SelectAllFields(this);" />
+                            </th>
+                            <th style="width: 300px;">
+                                Field Name
+                            </th>
+                        </tr>
+                        @foreach (string[] columns in exportFields)
+                        {
+                            <tr>
+                                <td style="width: 30px; text-align: center;">
+                                    <input type="checkbox" fieldname=@columns[0].ToString() />
+                                </td>
+                                <td style="width: 300px;">
+                                    @columns[1].ToString()
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<script type="text/javascript">
+    
+</script>

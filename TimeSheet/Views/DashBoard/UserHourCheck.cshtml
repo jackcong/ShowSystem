@@ -1,0 +1,22 @@
+﻿<div id="divhourcheck">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
+        @Html.Partial("~/Views/ComView/InnerTop.cshtml")
+        @Html.Partial("~/Views/ComView/InnerLeft.cshtml")
+    </nav>
+    <div ng-class="{page_wrapper_max:pagemax, page_wrapper_min:pagemin}">
+        <div class="page_content">
+            <br />
+
+            <div class="row">
+                <div class="control_bar">
+                    <a class="more-link" style="display:block; margin-bottom:15px; cursor:pointer; text-decoration:none;" ng-click="ShowTimeSheet()"><i class="add_new"></i></a>
+                </div>
+            </div>
+            <div class="row statistic_categories">
+
+            </div>
+
+            <br />
+        </div>
+    </div>
+</div>

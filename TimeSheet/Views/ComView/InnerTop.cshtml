@@ -1,0 +1,24 @@
+﻿@using BizLogic;
+@{
+    
+    var user = AccountHelper.GetCurrentUser();
+}
+
+<div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="">&nbsp;</a>
+</div>
+@*<img src="../../Content/img/TEST.png" style="padding-left: 20px;" alt="Instance" />*@
+<ul class="nav navbar-top-links navbar-right" data-ng-controller="SharedCtrl">
+    <li>
+        @*<a href="javascript:void(0)" class="common-links">FAQ &amp; Updates</a> &nbsp;*@
+        <span class="bigger-120">Welcome <b>@user.DisplayName</b> </span> &nbsp;
+        [<a href="#/ChangePassword" class="common-links">Change Password</a>]
+        [@Html.ActionLink("Log Off", "LogOff", "Account")]
+    </li>
+</ul>

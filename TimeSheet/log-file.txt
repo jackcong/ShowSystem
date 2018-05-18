@@ -1,0 +1,38 @@
+2016-06-23 10:06:32,944 [5] INFO  Productivity.Logging - 2016/6/23 10:06:32DashBoard-->GetDetailDatajack test throw error
+2016-06-23 10:11:16,673 [6] INFO  Productivity.Logging - 2016/6/23 10:11:16 [DashBoard-->GetList] Object reference not set to an instance of an object.
+2016-06-23 10:57:10,233 [8] INFO  Productivity.Logging - 2016/6/23 10:57:10 [DashBoard-->GetStatisticsData] Error getting value from 'UserName' on 'DataAccess.DC.TimeSheet'.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DataAccess.DC.TimeSheet.get_UserName() in D:\GitProject\TimeSheet\DataAccess\DC\TimeSheet.cs:line 32
+   at GetUserName(Object )
+   at Newtonsoft.Json.Serialization.DynamicValueProvider.GetValue(Object target)
+2016-06-23 10:58:32,182 [10] INFO  Productivity.Logging - 2016/6/23 10:58:32 [DashBoard-->GetStatisticsData] Error getting value from 'UserName' on 'DataAccess.DC.TimeSheet'.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DataAccess.DC.TimeSheet.get_UserName() in D:\GitProject\TimeSheet\DataAccess\DC\TimeSheet.cs:line 32
+   at GetUserName(Object )
+   at Newtonsoft.Json.Serialization.DynamicValueProvider.GetValue(Object target)
+2016-06-23 11:11:13,872 [6] INFO  Productivity.Logging - 2016/6/23 11:11:13 [DashBoard-->GetList] Timeout ,please refresh page.
+2016-06-23 11:11:59,253 [6] INFO  Productivity.Logging - 2016/6/23 11:11:59 [DashBoard-->GetList] Timeout ,please refresh page.
+2016-06-23 11:12:38,970 [14] INFO  Productivity.Logging - 2016/6/23 11:12:38 [DashBoard-->GetList] Timeout ,please refresh page.
+2016-06-23 11:13:39,975 [20] INFO  Productivity.Logging - 2016/6/23 11:13:39 [DashBoard-->GetList] Timeout ,please refresh page.
+2016-06-23 11:16:41,612 [8] INFO  Productivity.Logging - 2016/6/23 11:16:41 [DashBoard-->GetList] Timeout ,please refresh page.
+2016-06-23 11:18:33,988 [8] INFO  Productivity.Logging - 2016/6/23 11:18:33 [DashBoard-->GetList] Timeout ,please refresh page.
+2016-06-23 11:18:46,314 [8] INFO  Productivity.Logging - 2016/6/23 11:18:46 [DashBoard-->GetList] Timeout ,please refresh page.
+2016-06-23 13:13:00,886 [8] INFO  Productivity.Logging - 2016/6/23 13:13:00 [DashBoard-->GetList] Timeout ,please refresh page.
+2016-06-27 09:38:12,449 [5] INFO  Productivity.Logging - 2016/6/27 9:38:12 [DashBoard-->GetException] Input string was not in a correct format.
+2016-06-27 09:38:23,517 [6] INFO  Productivity.Logging - 2016/6/27 9:38:23 [DashBoard-->GetException] Input string was not in a correct format.
+2016-06-27 09:38:27,255 [6] INFO  Productivity.Logging - 2016/6/27 9:38:27 [DashBoard-->GetException] Input string was not in a correct format.
+2016-06-27 09:38:40,254 [8] INFO  Productivity.Logging - 2016/6/27 9:38:40 [DashBoard-->GetCategory] Object reference not set to an instance of an object.
+2016-06-27 09:43:24,736 [7] INFO  Productivity.Logging - 2016/6/27 9:43:24 [DashBoard-->GetCategory] Object reference not set to an instance of an object.
+2016-06-27 09:45:16,978 [8] INFO  Productivity.Logging - 2016/6/27 9:45:16 [DashBoard-->GetCategory] Object reference not set to an instance of an object.
+2016-06-27 09:54:00,444 [8] INFO  Productivity.Logging - 2016/6/27 9:54:00 [DashBoard-->GetCategory] Object reference not set to an instance of an object.
+2016-06-27 09:55:58,506 [16] INFO  Productivity.Logging - 2016/6/27 9:55:58 [DashBoard-->GetCategory] Object reference not set to an instance of an object.
+2016-06-27 09:59:10,935 [6] INFO  Productivity.Logging - 2016/6/27 9:59:10 [DashBoard-->GetCategory] Object reference not set to an instance of an object.
+2016-06-27 10:09:59,135 [12] INFO  Productivity.Logging - 2016/6/27 10:09:59 [DashBoard-->GetException] Input string was not in a correct format.
+2016-07-05 09:16:37,721 [5] INFO  Productivity.Logging - 2016/7/5 9:16:37 [DashBoard-->Index] Could not load file or assembly 'file:///C:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\vs\58d1537e\be405a9d\App_Web_index.cshtml.c6206085.r8rgva2t.dll' or one of its dependencies. The system cannot find the file specified.
+2016-07-07 16:19:23,937 [65] INFO  Productivity.Logging - 7/7/2016 4:19:23 PM [DashBoard-->GetStatisticsData] Error getting value from 'DisplayName' on 'DataAccess.DC.TimeSheet'.
+System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 DataAccess.DC.TimeSheet.get_DisplayName() 位置 F:\SouceControl\GitSource\TimeSheet\DataAccess\DC\TimeSheet.cs:行号 30
+   在 GetDisplayName(Object )
+   在 Newtonsoft.Json.Serialization.DynamicValueProvider.GetValue(Object target)
+2016-07-12 16:51:27,908 [6] INFO  Productivity.Logging - 2016/7/12 16:51:27 [DashBoard-->SaveTimeSheet] Nullable object must have a value.
+2018-05-17 14:54:42,316 [24] INFO  Productivity.Logging - 5/17/2018 2:54:42 PM [Account-->ChangePassword] Can not find user by id1

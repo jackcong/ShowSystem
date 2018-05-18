@@ -1,0 +1,57 @@
+﻿@using System.Configuration;
+@model WebModel.Account.LogOnModel
+@{
+    ViewBag.Title = "Log On";
+}
+
+<div class="SignIn">Sign in to an <b>existing</b> account</div>
+<div class="divLoginBody">
+    @using (Html.BeginForm("LogOn", "Account", FormMethod.Post))
+    {
+        <br />
+        <br />
+        <table cellpadding="0" cellspacing="0" class="tblEnterLogin">
+            <tr>
+                <td style="width: 450px;">
+                    @Html.TextBoxFor(m => m.UserName, new { @class = "loginTBox",@placeholder= "User Name", @watermark = "User Name", @title = "User name in system" })
+                    <br />
+                    @Html.ValidationMessageFor(m => m.UserName)
+                    <br />
+                    <br />
+                    @Html.PasswordFor(m => m.Password, new { @class = "loginTBox", @placeholder = "Password", @watermark = "Password", @title = "Password in system" })
+                    <br />
+                    @Html.ValidationMessageFor(m => m.Password)
+                </td>
+                <td class="RightTdTips">
+
+                    @if (ConfigurationManager.AppSettings["EnvType"].ToString() == "Test")
+                    {
+                        <span>To request a new account for our </span>
+                        <img src="../../Content/img/test_loginpage.png" alt="Test" /><span> please contact your administrator.</span>
+                    }
+                    else if (ConfigurationManager.AppSettings["EnvType"].ToString() == "UAT")
+                    {
+                        <span>To request a new account please contact your administrator.</span>
+                        @*<img src="../../Content/images/uat_loginpage.png" alt="UAT" /><span>*@
+                        }
+                        else if (ConfigurationManager.AppSettings["EnvType"].ToString() == "Prod" || ConfigurationManager.AppSettings["EnvType"].ToString() == "Stage")
+                        {
+                            <span>To request a new account please contact your administrator.</span>
+                        }
+
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="color: #FF0000; font-weight: normal;">
+                        @Html.ValidationSummary(true, "")
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: right; padding-right: 40px;">
+                        <input type="submit" value="Sign In" class="SinInBtn" />
+                    </td>
+                    <td>&nbsp;</td>
+                </tr>
+            </table>
+        }
+    </div>

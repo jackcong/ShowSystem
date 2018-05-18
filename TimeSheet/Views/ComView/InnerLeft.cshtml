@@ -1,0 +1,47 @@
+﻿<div class="navbar-default navbar-static-side" ng-class="{navbar_menuwidth_max:navbarMaxWidth, navbar_menuwidth_min: navbarMinWidth}">
+    <div class="sidebar-collapse">
+
+
+        <ul class="nav" id="side-menu">
+            <li class="SpecialLi">
+                <a href="javascript:void(0)" ng-click="ReversalMenu()"><i ng-class="{collapse_min:navbarColMax, collapse_max:navbarColMin}"></i></a>
+            </li>
+            <li id="tree"></li>
+
+            @*
+            <li class="">
+                <a href="#/DashBoard"><i class="glyphicon glyphicon-time"></i>&nbsp; <span>TimeSheet</span></a>
+            </li>
+
+            <li class="">
+                <a href="#/Statistics"><i class="glyphicon glyphicon-signal"></i>&nbsp; <span>Statistics</span></a>
+            </li>
+
+            <li class="">
+                <a href="#/CategoryEdit"><i class="glyphicon glyphicon-edit"></i>&nbsp; <span>Setting</span></a>
+            </li>
+            *@
+        </ul>
+    </div>
+</div>
+<br />
+<br />
+
+
+<script>
+
+    $(function () {
+
+        var scope = angular.element($("body")[0]).scope();
+        if (scope.currentStatus == false)
+        {
+            var tree = scope.treeWithoutText;
+            $('#tree').treeview({ data: tree, enableLinks: true, highlightSelected: false, isAddEmptyIcon: false });
+        }
+        else {
+            var tree = scope.treeWithText;
+            $('#tree').treeview({ data: tree, enableLinks: true, highlightSelected: false, isAddEmptyIcon: true });
+        }
+            
+    });
+</script>
