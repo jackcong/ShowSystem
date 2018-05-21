@@ -166,9 +166,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DashBoardController.cs" />
-    <Compile Include="Controllers\ExportController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\SettingController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -338,12 +336,9 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\controllers\controllers.js" />
     <Content Include="Scripts\controllers\DashBoardController.js" />
-    <Content Include="Scripts\controllers\DetailController.js" />
     <Content Include="Scripts\controllers\ExceptionController.js" />
     <Content Include="Scripts\controllers\logincontroller.js" />
-    <Content Include="Scripts\controllers\SettingController.js" />
     <Content Include="Scripts\controllers\sharedcontroller.js" />
-    <Content Include="Scripts\controllers\StatisticsController.js" />
     <Content Include="Scripts\controllers\usercontroller.js" />
     <Content Include="Scripts\datatable\t2v-datatable.js" />
     <Content Include="Scripts\directives.js" />
@@ -697,7 +692,6 @@
     <Content Include="Views\DashBoard\UserHourCheck.cshtml" />
     <Content Include="Views\Shared\Export.cshtml" />
     <Content Include="Views\Account\ChangePassword.cshtml" />
-    <Content Include="Views\Setting\CategoryEdit.cshtml" />
     <Content Include="Views\DashBoard\Comparison.cshtml" />
     <Content Include="Scripts\Vendor\Ueditor\third-party\jquery-1.10.2.min.map" />
     <Content Include="Scripts\Vendor\Ueditor\third-party\video-js\font\vjs.eot" />

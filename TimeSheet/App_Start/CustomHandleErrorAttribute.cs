@@ -1,5 +1,5 @@
 ﻿using ComLib.Extension;
-using ComLib.Log;
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,9 +15,7 @@ namespace TimeSheet.App_Start
         {
             string controllerName = (string)filterContext.RouteData.Values["controller"];
             string actionName = (string)filterContext.RouteData.Values["action"];
-
-            //log
-            Log4N.writeLog(controllerName+"-->"+actionName,filterContext.Exception, true);
+            
 
             ExceptionAttribute exceptionAttr = (ExceptionAttribute)Attribute.GetCustomAttribute(filterContext.Exception.GetType(),typeof(ExceptionAttribute));
 

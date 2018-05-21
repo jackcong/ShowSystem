@@ -43,6 +43,10 @@ namespace DataAccess.DC
         public DbSet<CategoryDetail> CategoryDetails { get; set; }
         public DbSet<CategoryCustomer> CategoryCustomers { get; set; }
 
+        public virtual DbSet<T_Category> T_Category { get; set; }
+    
+        public virtual DbSet<T_SubCategory> T_SubCategory { get; set; }
+
         public override int SaveChanges()
         {
             //UpdateDates();
@@ -91,6 +95,7 @@ namespace DataAccess.DC
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            
         }
 
         public DataTable ToDataTable<T>(IEnumerable<T> varlist)

@@ -59,22 +59,6 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NPOI, Version=1.2.4.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\DLL\NPOI 2.0.1\NPOI.dll</HintPath>
-    </Reference>
-    <Reference Include="NPOI.OOXML, Version=2.0.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\DLL\NPOI 2.0.1\NPOI.OOXML.dll</HintPath>
-    </Reference>
-    <Reference Include="NPOI.OpenXml4Net, Version=2.0.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\DLL\NPOI 2.0.1\NPOI.OpenXml4Net.dll</HintPath>
-    </Reference>
-    <Reference Include="NPOI.OpenXmlFormats, Version=2.0.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\DLL\NPOI 2.0.1\NPOI.OpenXmlFormats.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
@@ -90,7 +74,6 @@
   <ItemGroup>
     <Compile Include="AccountHelper.cs" />
     <Compile Include="BaseBizLogic.cs" />
-    <Compile Include="ExportBizLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TimeSheetBizLogic.cs" />
   </ItemGroup>
@@ -107,12 +90,8 @@
       <Project>{27725cb9-c55f-4264-8dd6-df7b49f20b04}</Project>
       <Name>DataAccess</Name>
     </ProjectReference>
-    <ProjectReference Include="..\IDataAccessLayer\IDataAccessLayer.csproj">
-      <Project>{fd182407-92bd-4f71-99ce-a193fe5bfb92}</Project>
-      <Name>IDataAccessLayer</Name>
-    </ProjectReference>
     <ProjectReference Include="..\WebModel\WebModel.csproj">
-      <Project>{57037E08-6CD7-403C-80C5-10E52DA810E4}</Project>
+      <Project>{57037e08-6cd7-403c-80c5-10e52da810e4}</Project>
       <Name>WebModel</Name>
     </ProjectReference>
   </ItemGroup>

@@ -1,18 +1,16 @@
 ﻿using ComLib.Security;
 using DataAccess.DC;
-using IDataAccessLayer;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Web;
 using WebModel.Account;
-using ComLib.Mail;
 using ComLib.Extension;
 
 namespace DataAccessLayer
 {
-    public class AccountManager : BaseManager, IAccountManager
+    public class AccountManager : BaseManager
     {
         public DC dcObj;
 

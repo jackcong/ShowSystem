@@ -96,6 +96,8 @@
     <Compile Include="DC\DC.cs" />
     <Compile Include="DC\SummaryTimeSheet.cs" />
     <Compile Include="DC\TimeSheet.cs" />
+    <Compile Include="DC\T_Category.cs" />
+    <Compile Include="DC\T_SubCategory.cs" />
     <Compile Include="DC\User.cs" />
     <Compile Include="DC\UserGroup.cs" />
     <Compile Include="DC\UserGroupRelation.cs" />
@@ -139,14 +141,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ComLib\ComLib.csproj">
-      <Project>{4c819e2f-459b-458a-b1f3-308466c13948}</Project>
-      <Name>ComLib</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />

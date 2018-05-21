@@ -159,14 +159,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Azure\StorageHelper.cs" />
     <Compile Include="Compress\Zip.cs" />
     <Compile Include="Converter\ByteConverter.cs" />
     <Compile Include="Converter\DateTimeConverter.cs" />
     <Compile Include="Converter\EnumConverter.cs" />
     <Compile Include="Converter\MapPathConvert.cs" />
     <Compile Include="Converter\NumberConverter.cs" />
-    <Compile Include="Database\DbHelper.cs" />
     <Compile Include="Exceptions\CustomeOutRangeException.cs" />
     <Compile Include="Exceptions\DBException.cs" />
     <Compile Include="Exceptions\FileOperationException.cs" />
@@ -187,36 +185,12 @@
     <Compile Include="Extension\ObjectExtension.cs" />
     <Compile Include="Extension\StringExtension.cs" />
     <Compile Include="Extension\TypeExtension.cs" />
-    <Compile Include="File\Csv\CsvData.cs" />
-    <Compile Include="File\Csv\CsvFile.cs" />
-    <Compile Include="File\Csv\CsvFileLoader.cs" />
-    <Compile Include="File\Csv\CsvProcessor.cs" />
-    <Compile Include="File\Downloader.cs" />
-    <Compile Include="File\Excel\ExcelData.cs" />
-    <Compile Include="File\Excel\ExcelDataExtension.cs" />
-    <Compile Include="File\Excel\ReadExcel.cs" />
-    <Compile Include="File\IDataFile.cs" />
-    <Compile Include="File\IDownloadable.cs" />
-    <Compile Include="File\MIMEType.cs" />
-    <Compile Include="Ftp\FTPManager.cs" />
-    <Compile Include="Ftp\FTPManagerResults.cs" />
     <Compile Include="HTTPResultHelpers\HttpResponseResult.cs" />
     <Compile Include="HTTPResultHelpers\JqGridResultHelper.cs" />
-    <Compile Include="Log\ILogger.cs" />
-    <Compile Include="Log\Log4N.cs" />
-    <Compile Include="Log\LogEntryType.cs" />
-    <Compile Include="Log\WinEventLogger.cs" />
-    <Compile Include="Mail\IMailService.cs" />
-    <Compile Include="Mail\MailAuth.cs" />
-    <Compile Include="Mail\MailObject.cs" />
-    <Compile Include="Mail\MailServiceExchange.cs" />
-    <Compile Include="Mail\MailServiceLoader.cs" />
-    <Compile Include="Mail\MailServicePOP3SMTP.cs" />
     <Compile Include="MVC\AjaxRedirectResult.cs" />
     <Compile Include="MVC\JsonNetResult.cs" />
     <Compile Include="MVC\T2VAuthorize.cs" />
     <Compile Include="MVC\T2VController.cs" />
-    <Compile Include="PDF\ReadPDF.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\Hashing.cs" />
     <Compile Include="SmartLinq\Energizer\ExpressionParser\CodeParser.cs" />
@@ -232,9 +206,7 @@
     <Compile Include="SmartLinq\SmartLinqQueryOptions.cs" />
     <Compile Include="Validation\ValidationHelper.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="File\Http\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">
       <Visible>False</Visible>
